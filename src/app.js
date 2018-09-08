@@ -1,7 +1,11 @@
+import { config } from 'dotenv';
+config();
+
 import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import winston from './config/winston';
+import mongoose from 'mongoose';
 
 import GameRouter from './routes/GameRouter';
 import ChallengesRouter from './routes/ChallengesRouter';
@@ -49,4 +53,25 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(5000);
+app.listen(process.env.PORT, async () => {
+  winston.info(`server listens to port ${process.env.PORT}`);
+
+  // Connect to Mongo
+  const mongoHost = process.env.NODE_ENV === 'production' ? 'mongo' : 'localhost';
+  const mongoConnectionString = `mongodb://${mongoHost}/japanese`;
+  winston.info(`connecting to Mongo at ${mongoConnectionString}`);
+  try {
+    const connected = await mongoose.connect(mongoConnectionString, { useNewUrlParser: true });
+    const {
+      host,
+      name,
+      port,
+    } = connected.connection
+
+    winston.info(`connected to mongo db "${name}" at ${host}:${port}`);
+  } catch (err) {
+    // console.log('error in mongo', e)
+    winston.error(`mongo connection failed`, err);
+  }
+
+});
