@@ -14,6 +14,13 @@ app.use(logger('combined', { stream: winston.stream }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// enable CORS
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 // ------------- Game Router -------------
 app.use('/api/game', GameRouter);
 app.use('/api/challenges', ChallengesRouter);
