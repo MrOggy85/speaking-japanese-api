@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
-import winston from '../config/winston';
+import winston from './config/winston';
 
 import GameRouter from './routes/GameRouter';
 import ChallengesRouter from './routes/ChallengesRouter';
