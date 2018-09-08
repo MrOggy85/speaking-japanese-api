@@ -1,4 +1,6 @@
 import express from 'express';
+import mongoose from 'mongoose';
+import challenge from '../models/challenge';
 
 import {
   parseId,
@@ -10,16 +12,8 @@ const ChallengesRouter = express.Router();
 
 // Get all
 ChallengesRouter.get('/', asyncUtil(async (req, res) => {
-  res.send([
-    {
-      id: 1,
-      name: 'adjectives',
-    },
-    {
-      id: 2,
-      name: 'sentences',
-    },
-  ]);
+  const result = await challenge.find({}).exec();
+  res.send(result);
 }));
 
 export default ChallengesRouter;
