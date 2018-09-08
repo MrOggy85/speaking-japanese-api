@@ -4,8 +4,10 @@
   "main": "app.js",
   "scripts": {
     "babel-node": "babel-node --presets=/*a*/ ",
+    "clean": "rm -rf dist && mkdir dist",
     "start": "nodemon --exec babel-node -- ./src/app.js",
-    "build": "babel src -d dist"
+    "debug": "nodemon --inspect-brk --exec babel-node -- ./src/app.js",
+    "build": "babel -d dist src -s"
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
