@@ -1,0 +1,19 @@
+node_modules
+dist
+
+# Docker
+.dockerignore
+Dockerfile
+
+# logs
+npm-debug.log
+logs
+
+# git
+.git
+.gitignore
+
+# Stuff
+.DS_Store
+LICENSE
+README.md
