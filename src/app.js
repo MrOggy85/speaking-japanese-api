@@ -27,6 +27,7 @@ app.use(function(req, res, next) {
 
 const BASE_URL = process.env.BASE_URL;
 winston.info(`base URL is: ${BASE_URL}`);
+winston.info('hello');
 
 // ------------- Game Router -------------
 app.use(`${BASE_URL}/api/game`, GameRouter);
