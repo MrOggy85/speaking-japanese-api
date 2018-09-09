@@ -25,9 +25,12 @@ app.use(function(req, res, next) {
   next();
 });
 
+const BASE_URL = process.env.BASE_URL;
+winston.info(`base URL is: ${BASE_URL}`);
+
 // ------------- Game Router -------------
-app.use('/api/game', GameRouter);
-app.use('/api/challenges', ChallengesRouter);
+app.use(`${BASE_URL}/api/game`, GameRouter);
+app.use(`${BASE_URL}/api/challenges`, ChallengesRouter);
 
 // 404
 app.use((req, res, next) => {
