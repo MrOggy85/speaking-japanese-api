@@ -62,7 +62,9 @@ app.listen(process.env.PORT, async () => {
 
   // Connect to Mongo
   const mongoHost = process.env.NODE_ENV === 'production' ? 'mongo' : 'localhost';
-  const mongoConnectionString = `mongodb://${mongoHost}/japanese`;
+  const username = process.env.MONGO_USERNAME;
+  const password = process.env.MONGO_PASSWORD;
+  const mongoConnectionString = `mongodb://${username}:${password}@${mongoHost}/japanese`;
   winston.info(`connecting to Mongo at ${mongoConnectionString}`);
   try {
     const connected = await mongoose.connect(mongoConnectionString, { useNewUrlParser: true });
