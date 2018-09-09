@@ -20,7 +20,10 @@ RUN npm install && \
 COPY --from=builder /home/node/app/dist ./dist
 
 # install Dockerize to be able to wait for Mongo
-RUN apk add --no-cache openssl
+RUN apk update && \
+  apk add ca-certificates wget && \
+  update-ca-certificates && \
+  apk add --no-cache openssl
 
 ENV DOCKERIZE_VERSION v0.6.1
 RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
