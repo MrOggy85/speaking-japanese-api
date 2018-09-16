@@ -11,4 +11,4 @@ const challenge = {
   modified: { type: Date },
 };
 
-export default mongoose.model('challenge', challenge);;
+export default mongoose.model('challenge', challenge);
