@@ -1,6 +1,7 @@
 import { config } from 'dotenv';
 config();
 
+/* eslint-disable import/first */
 import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
@@ -19,9 +20,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // enable CORS
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
 
@@ -42,7 +43,7 @@ app.use((req, res, next) => {
 });
 
 // error handler
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -75,12 +76,11 @@ app.listen(process.env.PORT, async () => {
       host,
       name,
       port,
-    } = connected.connection
+    } = connected.connection;
 
     winston.info(`connected to mongo db "${name}" at ${host}:${port}`);
   } catch (err) {
     // console.log('error in mongo', e)
-    winston.error(`mongo connection failed`, err);
+    winston.error(`mongo connection failed ${err}`);
   }
-
 });

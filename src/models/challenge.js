@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
 import base from './base';
 
-const Schema = mongoose.Schema;
-
 const challenge = {
   ...Object.assign({}, base),
 
