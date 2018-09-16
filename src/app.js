@@ -27,7 +27,7 @@ app.use(function(req, res, next) {
 
 const BASE_URL = process.env.BASE_URL;
 winston.info(`base URL is: ${BASE_URL}`);
-winston.info('hello');
+
 
 // ------------- Game Router -------------
 app.use(`${BASE_URL}/api/game`, GameRouter);
@@ -61,7 +61,10 @@ app.listen(process.env.PORT, async () => {
   winston.info(`server listens to port ${process.env.PORT}`);
 
   // Connect to Mongo
-  const mongoHost = process.env.NODE_ENV === 'production' ? 'mongo' : 'localhost';
+  let mongoHost = process.env.NODE_ENV === 'production' ? 'mongo' : 'localhost';
+  if (process.env.MONGO_HOST) {
+    mongoHost = process.env.MONGO_HOST;
+  }
   const username = process.env.MONGO_USERNAME;
   const password = process.env.MONGO_PASSWORD;
   const mongoConnectionString = `mongodb://${username}:${password}@${mongoHost}/japanese?authSource=admin`;
