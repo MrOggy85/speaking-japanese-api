@@ -1,22 +1,20 @@
 import express from 'express';
+import { getNextQuestion } from '../services/gameEngine';
 
 import {
   parseId,
-  parseJson,
   asyncUtil,
 } from './helpers';
 
 const GameRouter = express.Router();
 
 // Get by id
-GameRouter.get('/:id', asyncUtil(async (req, res)=> {
-  const id = parseId(req);
-  var promise1 = new Promise(function(resolve, reject) {
-    setTimeout(resolve, 1000, 'foo');
-  });
-  const result = await promise1;
+GameRouter.get('/:id/next', asyncUtil(async (req, res) => {
+  const challengeId = parseId(req);
 
-  res.send({ result });
+  const gameObject = await getNextQuestion(challengeId);
+
+  res.send(gameObject);
 }));
 
 export default GameRouter;
