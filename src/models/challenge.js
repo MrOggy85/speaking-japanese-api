@@ -7,6 +7,7 @@ const challenge = {
   tags: { type: [String], default: [] },
   created: { type: Date },
   modified: { type: Date },
+  type: String,
 };
 
 export default mongoose.model('challenge', challenge);
