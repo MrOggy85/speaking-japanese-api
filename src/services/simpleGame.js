@@ -16,7 +16,7 @@ async function getSentencesByTags(tags) {
   return result;
 }
 
-export default async function getSentenceGameObject(tags) {
+export default async function getSimpleGameObject(tags) {
   const sentences = await getSentencesByTags(tags);
   const index = getRandomInt(sentences.length);
   const item = sentences[index];
