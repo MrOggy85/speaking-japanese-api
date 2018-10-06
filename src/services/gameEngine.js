@@ -3,15 +3,19 @@ import winston from '../config/winston';
 import challengeModel from '../models/challenge';
 
 import getAdjectiveGameObject from './adjectivesGame';
+import getSentenceGameObject from './sentencesGame';
 
 const GAME_TYPE = {
   ADJECTIVES: 'adjectives',
+  SENTENCES: 'sentences',
 };
 
 function getGame(gameType) {
   switch (gameType.toLowerCase()) {
     case GAME_TYPE.ADJECTIVES:
       return getAdjectiveGameObject;
+    case GAME_TYPE.SENTENCES:
+      return getSentenceGameObject;
     default: {
       const err = new Error(`no such gameType "${gameType}".
       Valid games are: ${Object.values(GAME_TYPE)}
