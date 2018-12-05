@@ -1,4 +1,6 @@
-FROM node:8.11.4-alpine AS builder
+FROM node:10.14.1-alpine AS builder
+
+
 
 WORKDIR /home/node/app
 
@@ -7,7 +9,7 @@ COPY . .
 RUN npm ci && npm run build
 
 # ------------------------------------
-FROM node:8.11.4-alpine
+FROM node:10.14.1-alpine
 ENV NODE_ENV=production
 WORKDIR /home/node/app
 
