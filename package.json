@@ -19,7 +19,7 @@
     "immutable": "^3.8.2",
     "logform": "^1.9.1",
     "mongoose": "^5.2.12",
-    "morgan": "^1.9.0",
+    "morgan": "^1.9.1",
     "winston": "^3.0.0"
   },
   "devDependencies": {
