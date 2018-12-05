@@ -4,7 +4,7 @@ WORKDIR /home/node/app
 
 COPY . .
 
-RUN npm install && npm run build
+RUN npm ci && npm run build
 
 # ------------------------------------
 FROM node:8.11.4-alpine
@@ -13,7 +13,7 @@ WORKDIR /home/node/app
 
 COPY ./package* ./
 
-RUN npm install && \
+RUN npm ci && \
     npm cache clean --force
 
 # Copy builded source from the upper builder stage
