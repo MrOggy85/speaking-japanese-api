@@ -1,12 +1,10 @@
 FROM node:10.14.1-alpine AS builder
 
-
-
 WORKDIR /home/node/app
 
 COPY . .
 
-RUN npm ci && npm run build
+RUN node --max_old_space_size=512 `which npm` ci && node --max_old_space_size=512 `which npm` run build
 
 # ------------------------------------
 FROM node:10.14.1-alpine
@@ -15,8 +13,8 @@ WORKDIR /home/node/app
 
 COPY ./package* ./
 
-RUN npm ci && \
-    npm cache clean --force
+RUN node --max_old_space_size=512 `which npm` ci && \
+    node --max_old_space_size=512 `which npm` cache clean --force
 
 # Copy builded source from the upper builder stage
 COPY --from=builder /home/node/app/dist ./dist
@@ -34,4 +32,4 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 
 EXPOSE 8081
 
-CMD ["dockerize", "-wait", "http://mongo:27017", "node", "./dist/app.js"]
+CMD ["dockerize", "-wait", "http://mongo:27017", "node", "--max_old_space_size=512", "./dist/app.js"]
