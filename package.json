@@ -7,7 +7,9 @@
     "clean": "rm -rf dist && mkdir dist",
     "start": "nodemon --exec babel-node -- ./src/app.js",
     "debug": "nodemon --inspect-brk --exec babel-node -- ./src/app.js",
-    "build": "babel -d dist src -s"
+    "build": "babel -d dist src -s",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
@@ -20,7 +22,8 @@
     "logform": "^1.9.1",
     "mongoose": "^5.2.12",
     "morgan": "^1.9.1",
-    "winston": "^3.0.0"
+    "winston": "^3.0.0",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
@@ -38,5 +41,6 @@
     "eslint-plugin-import": "2.8.0",
     "eslint-plugin-security": "^1.4.0",
     "nodemon": "^1.18.3"
-  }
+  },
+  "snyk": true
 }
