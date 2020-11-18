@@ -1,6 +1,10 @@
 {
   "name": "api-speech",
   "version": "0.1.0",
+  "author": {
+    "name": "Oskar Lindgren",
+    "url": "https://www.oskarlindgren.se"
+  },
   "main": "app.js",
   "scripts": {
     "babel-node": "babel-node --presets=/*a*/ ",
